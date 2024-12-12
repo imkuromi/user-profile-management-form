@@ -12,9 +12,9 @@ export const schema = z.object({
       message: "Email not valid",
     }),
   pdpa: z.boolean(),
-  gender: z.enum(["","male","female","ect"]),
+  gender: z.enum(["","Male","Female","Ect"]),
   hobby: z.array(z.string()),
-  status: z.enum(["","single", "married", "divorce"]),
+  status: z.enum(["","Single", "Married", "Divorce"]),
   note: z.string(),
 
 });

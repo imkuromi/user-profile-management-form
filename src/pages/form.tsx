@@ -35,7 +35,7 @@ export default function Form() {
       lastName: "",
       email: "",
       pdpa: false,
-      gender: "male",
+      gender: "",
       hobby: [],
       status: "",
       note: "",
@@ -123,17 +123,17 @@ export default function Form() {
                       render={({ field }) => (
                         <RadioGroup row {...field}>
                           <FormControlLabel
-                            value="male"
+                            value="Male"
                             control={<Radio />}
                             label="Male"
                           />
                           <FormControlLabel
-                            value="female"
+                            value="Female"
                             control={<Radio />}
                             label="Female"
                           />
                           <FormControlLabel
-                            value="ect"
+                            value="Ect"
                             control={<Radio />}
                             label="Ect"
                           />
@@ -226,9 +226,9 @@ export default function Form() {
                     <FormControl fullWidth>
                       <InputLabel>Status</InputLabel>
                       <Select {...field} label="Status">
-                        <MenuItem value={"single"}>Single</MenuItem>
-                        <MenuItem value={"married"}>Married</MenuItem>
-                        <MenuItem value={"divorce"}>Divorce</MenuItem>
+                        <MenuItem value={"Single"}>Single</MenuItem>
+                        <MenuItem value={"Married"}>Married</MenuItem>
+                        <MenuItem value={"Divorce"}>Divorce</MenuItem>
                       </Select>
                     </FormControl>
                   )}
@@ -269,7 +269,7 @@ export default function Form() {
             <Paper sx={{ m: 2, p: 2 }}>
               <Grid container columns={{ xs: 6, sm: 6, md: 6 }}>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography variant="h6">USER {index + 1}</Typography>
+                  <Typography variant="h6" sx={{fontWeight: 'bold'}}>USER {index + 1}</Typography>
                 </Grid>
                 <Grid
                   container
@@ -285,7 +285,6 @@ export default function Form() {
                     onClick={() => deleteUser(index)}
                   />
                 </Grid>
-                F
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
                   <Typography>
                     Name: {data.name} {data.lastName}{" "}
