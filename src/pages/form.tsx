@@ -43,19 +43,19 @@ export default function Form() {
     },
   });
 
-  const [test, setTest] = useState<any[]>([]);
+  const [user, setUser] = useState<any[]>([]);
 
   const onSubmit = (data: any) => {
-    const newData = [...test, data];
-    setTest(newData);
+    const newData = [...user, data];
+    setUser(newData);
   };
 
   const deleteUser = (index: number) => {
-    const newTest = test.filter((_, i) => i !== index);
-    setTest(newTest);
+    const newTest = user.filter((_, i) => i !== index);
+    setUser(newTest);
   };
 
-  console.log(test);
+  console.log(user);
 
   return (
     <Grid container spacing={2} sx={{ pt: 5 }}>
@@ -265,7 +265,7 @@ export default function Form() {
       </Grid>
 
       <Grid size={{ xs: 12, sm: 12, md: 7, lg: 7 }}>
-        {test.map((data, index) => (
+        {user.map((data, index) => (
           <Grid size={12} key={index + 1}>
             <Paper sx={{ m: 2, p: 2 }}>
               <Grid container columns={{ xs: 6, sm: 6, md: 6 }}>
