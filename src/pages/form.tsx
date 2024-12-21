@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Schema, schema } from "../lib/schema";
 import { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { z } from "zod";
 
 
 
@@ -47,14 +48,14 @@ export default function Form() {
 
   const [user, setUser] = useState<any[]>([]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data:  z.infer<typeof schema>) => {
     const newData = [...user, data];
     setUser(newData);
   };
 
   const deleteUser = (index: number) => {
-    const newTest = user.filter((_, i) => i !== index);
-    setUser(newTest);
+    const deleteUser = user.filter((user,i) => i !== index);
+    setUser(deleteUser);
   };
 
   console.log(user);
@@ -306,7 +307,7 @@ export default function Form() {
                   <Typography>Status: {data.status}</Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Note: {data.notes} </Typography>
+                  <Typography>Note: {data.note} </Typography>
                 </Grid>
               </Grid>
               <Grid container columns={{ xs: 6, sm: 6, md: 6 }}>
