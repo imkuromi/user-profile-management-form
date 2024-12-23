@@ -7,10 +7,9 @@ export default function Header() {
         sx={{
           textAlign: "center",
           fontSize: {
-            xs: "1.5rem",
-            sm: "2rem",
+            xs: "2rem",
             md: "2.5rem",
-            lg: "3rem",
+            lg: "3.125rem",
           },
         }}
         variant="h3"

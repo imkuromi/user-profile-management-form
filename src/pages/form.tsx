@@ -48,13 +48,13 @@ export default function Form() {
 
   const [user, setUser] = useState<any[]>([]);
 
-  const onSubmit = (data:  z.infer<typeof schema>) => {
+  const onSubmit = (data: z.infer<typeof schema>) => {
     const newData = [...user, data];
     setUser(newData);
   };
 
   const deleteUser = (index: number) => {
-    const deleteUser = user.filter((user,i) => i !== index);
+    const deleteUser = user.filter((user, i) => i !== index);
     setUser(deleteUser);
   };
 
@@ -273,7 +273,9 @@ export default function Form() {
             <Paper sx={{ m: 2, p: 2 }}>
               <Grid container columns={{ xs: 6, sm: 6, md: 6 }}>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography variant="h6" sx={{fontWeight: 'bold'}}>USER {index + 1}</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                    USER {index + 1}
+                  </Typography>
                 </Grid>
                 <Grid
                   container
