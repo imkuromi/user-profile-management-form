@@ -16,7 +16,6 @@ export const schema = z.object({
   hobby: z.array(z.string()),
   status: z.enum(["","Single", "Married", "Divorce"]),
   note: z.string(),
-
 });
 
 export type Schema = z.infer<typeof schema>;

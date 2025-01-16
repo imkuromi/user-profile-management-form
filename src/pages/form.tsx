@@ -57,7 +57,7 @@ export default function Form() {
     const deleteUser = user.filter((user, i) => i !== index);
     setUser(deleteUser);
   };
-
+  
   console.log(user);
 
   return (
@@ -165,7 +165,7 @@ export default function Form() {
                               onChange={(e) => {
                                 const newValue = e.target.checked
                                   ? [...field.value, "Game"]
-                                  : field.value.filter((v) => v !== "Game");
+                                  : field.value.filter((i) => i !== "Game");
                                 field.onChange(newValue);
                               }}
                             />
@@ -180,7 +180,7 @@ export default function Form() {
                               onChange={(e) => {
                                 const newValue = e.target.checked
                                   ? [...field.value, "Music"]
-                                  : field.value.filter((v) => v !== "Music");
+                                  : field.value.filter((i) => i !== "Music");
                                 field.onChange(newValue);
                               }}
                             />
@@ -195,7 +195,7 @@ export default function Form() {
                               onChange={(e) => {
                                 const newValue = e.target.checked
                                   ? [...field.value, "Craft"]
-                                  : field.value.filter((v) => v !== "Craft");
+                                  : field.value.filter((i) => i !== "Craft");
                                 field.onChange(newValue);
                               }}
                             />
@@ -210,7 +210,7 @@ export default function Form() {
                               onChange={(e) => {
                                 const newValue = e.target.checked
                                   ? [...field.value, "Reading"]
-                                  : field.value.filter((v) => v !== "Reading");
+                                  : field.value.filter((i) => i !== "Reading");
                                 field.onChange(newValue);
                               }}
                             />
