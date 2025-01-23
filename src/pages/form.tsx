@@ -40,9 +40,9 @@ export default function Form() {
       lastName: "",
       email: "",
       pdpa: false,
-      gender: "",
+      gender: "" as any,
       hobby: [],
-      status: "",
+      status: "" as any ,
       note: "",
     },
   });
