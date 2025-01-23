@@ -11,11 +11,11 @@ export const schema = z.object({
     .refine((text) => patterns.email.test(text), {
       message: "Email not valid",
     }),
-  pdpa: z.boolean(),
-  gender: z.enum(["","Male","Female","Ect"]),
-  hobby: z.array(z.string()),
-  status: z.enum(["","Single", "Married", "Divorce"]),
-  note: z.string(),
+  pdpa: z.boolean().refine((value)=> value === true,{ message: "I agree to the PDPA policy"}),
+  gender: z.enum(["","Male","Female","Ect"]).refine((value)=>value !== "",{message:"Gender is Required"}),
+  hobby:  z.string().array().nonempty({message:"Hobby is Required"}),
+  status: z.enum(["","Single", "Married", "Divorce"]).refine((value)=>value !== "",{message:"Status is Required"}),
+  note: z.string().min(1, { message: "Note is Required" })
 });
 
 export type Schema = z.infer<typeof schema>;
