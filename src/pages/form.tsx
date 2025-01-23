@@ -300,22 +300,22 @@ export default function Form() {
                   <Typography>Email: {data.email} </Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Gender: {data.gender}</Typography>
+                  <Typography>Gender: {data.gender || "-"}</Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Hobby: {data.hobby.join(", ")}</Typography>
+                  <Typography>Hobby: {data.hobby.join(", ")|| "-"}</Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Status: {data.status}</Typography>
+                  <Typography>Status: {data.status|| "-"}</Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Note: {data.note} </Typography>
+                  <Typography>Note: {data.note|| "-"} </Typography>
                 </Grid>
               </Grid>
               <Grid container columns={{ xs: 6, sm: 6, md: 6 }}>
                 <FormControlLabel
                   label="Confirm PDPA"
-                  control={<Checkbox checked={data.pdpa} />}
+                  control={<Checkbox checked={data.pdpa || "-"} />}
                 />
               </Grid>
             </Paper>
