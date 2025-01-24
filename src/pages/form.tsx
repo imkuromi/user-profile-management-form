@@ -13,6 +13,8 @@ import {
   Paper,
   RadioGroup,
   Typography,
+  FormHelperText,
+  FormGroup,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { useForm, Controller } from "react-hook-form";
@@ -22,14 +24,13 @@ import { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { z } from "zod";
 
-
-
 export default function Form() {
   const {
     register,
     handleSubmit,
     control,
     reset,
+    getValues,
     formState: { errors },
   } = useForm<Schema>({
     mode: "all",
@@ -39,9 +40,9 @@ export default function Form() {
       lastName: "",
       email: "",
       pdpa: false,
-      gender: "",
+      gender: "Male",
       hobby: [],
-      status: "",
+      status: "" as any ,
       note: "",
     },
   });
@@ -57,7 +58,7 @@ export default function Form() {
     const deleteUser = user.filter((user, i) => i !== index);
     setUser(deleteUser);
   };
-  
+
   console.log(user);
 
   return (
@@ -103,16 +104,21 @@ export default function Form() {
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 12, md: 12 }}>
-                <Controller
-                  name="pdpa"
-                  control={control}
-                  render={({ field }) => (
-                    <FormControlLabel
-                      label="confirm PDPA"
-                      control={<Checkbox {...field} checked={field.value} />}
-                    />
-                  )}
-                />
+                <FormControl>
+                  <Controller
+                    name="pdpa"
+                    control={control}
+                    render={({ field }) => (
+                      <FormControlLabel
+                        label="confirm PDPA"
+                        control={<Checkbox {...field} checked={field.value} />}
+                      />
+                    )}
+                  />
+                  <FormHelperText sx={{ color: "#dc3545" }}>
+                    {errors?.pdpa?.message}
+                  </FormHelperText>
+                </FormControl>
               </Grid>
 
               <Grid size={{ xs: 12, sm: 12, md: 12 }}>
@@ -144,81 +150,91 @@ export default function Form() {
                         </RadioGroup>
                       )}
                     />
+                    <FormHelperText sx={{ color: "#dc3545" }}>
+                      {errors?.gender?.message}
+                    </FormHelperText>
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <Box>
-                    <FormLabel>Hobby</FormLabel>
-                  </Box>
-                  <Controller
-                    name="hobby"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <FormControlLabel
-                          label="Game"
-                          control={
-                            <Checkbox
-                              value="Game"
-                              checked={field.value.includes("Game")}
-                              onChange={(e) => {
-                                const newValue = e.target.checked
-                                  ? [...field.value, "Game"]
-                                  : field.value.filter((i) => i !== "Game");
-                                field.onChange(newValue);
-                              }}
-                            />
-                          }
-                        />
-                        <FormControlLabel
-                          label="Music"
-                          control={
-                            <Checkbox
-                              value="Music"
-                              checked={field.value.includes("Music")}
-                              onChange={(e) => {
-                                const newValue = e.target.checked
-                                  ? [...field.value, "Music"]
-                                  : field.value.filter((i) => i !== "Music");
-                                field.onChange(newValue);
-                              }}
-                            />
-                          }
-                        />
-                        <FormControlLabel
-                          label="Craft"
-                          control={
-                            <Checkbox
-                              value="Craft"
-                              checked={field.value.includes("Craft")}
-                              onChange={(e) => {
-                                const newValue = e.target.checked
-                                  ? [...field.value, "Craft"]
-                                  : field.value.filter((i) => i !== "Craft");
-                                field.onChange(newValue);
-                              }}
-                            />
-                          }
-                        />
-                        <FormControlLabel
-                          label="Reading"
-                          control={
-                            <Checkbox
-                              value="Reading"
-                              checked={field.value.includes("Reading")}
-                              onChange={(e) => {
-                                const newValue = e.target.checked
-                                  ? [...field.value, "Reading"]
-                                  : field.value.filter((i) => i !== "Reading");
-                                field.onChange(newValue);
-                              }}
-                            />
-                          }
-                        />
-                      </>
-                    )}
-                  />
+                  <FormControl>
+                    <Box>
+                      <FormLabel>Hobby</FormLabel>
+                    </Box>
+                    <Controller
+                      name="hobby"
+                      control={control}
+                      render={({ field }) => (
+                        <FormGroup row>
+                          <FormControlLabel
+                            label="Game"
+                            control={
+                              <Checkbox
+                                value="Game"
+                                checked={field.value.includes("Game")}
+                                onChange={(e) => {
+                                  const newValue = e.target.checked
+                                    ? [...field.value, "Game"]
+                                    : field.value.filter((i) => i !== "Game");
+                                  field.onChange(newValue);
+                                }}
+                              />
+                            }
+                          />
+                          <FormControlLabel
+                            label="Music"
+                            control={
+                              <Checkbox
+                                value="Music"
+                                checked={field.value.includes("Music")}
+                                onChange={(e) => {
+                                  const newValue = e.target.checked
+                                    ? [...field.value, "Music"]
+                                    : field.value.filter((i) => i !== "Music");
+                                  field.onChange(newValue);
+                                }}
+                              />
+                            }
+                          />
+                          <FormControlLabel
+                            label="Craft"
+                            control={
+                              <Checkbox
+                                value="Craft"
+                                checked={field.value.includes("Craft")}
+                                onChange={(e) => {
+                                  const newValue = e.target.checked
+                                    ? [...field.value, "Craft"]
+                                    : field.value.filter((i) => i !== "Craft");
+                                  field.onChange(newValue);
+                                }}
+                              />
+                            }
+                          />
+                          <FormControlLabel
+                            label="Reading"
+                            control={
+                              <Checkbox
+                                value="Reading"
+                                checked={field.value.includes("Reading")}
+                                onChange={(e) => {
+                                  const newValue = e.target.checked
+                                    ? [...field.value, "Reading"]
+                                    : field.value.filter(
+                                        (i) => i !== "Reading"
+                                      );
+                                  field.onChange(newValue);
+                                }}
+                              />
+                            }
+                          />
+                        </FormGroup>
+                      )}
+                    />
+                    <FormHelperText sx={{ color: "#dc3545" }}>
+                      {errors?.hobby?.message}
+                    </FormHelperText>
+                  </FormControl>
                 </Box>
               </Grid>
 
@@ -234,6 +250,9 @@ export default function Form() {
                         <MenuItem value={"Married"}>Married</MenuItem>
                         <MenuItem value={"Divorce"}>Divorce</MenuItem>
                       </Select>
+                      <FormHelperText sx={{ color: "#dc3545" }}>
+                        {errors?.status?.message}
+                      </FormHelperText>
                     </FormControl>
                   )}
                 />
@@ -242,6 +261,8 @@ export default function Form() {
                 <TextField
                   {...register("note")}
                   fullWidth
+                  error={!!errors.note}
+                  helperText={errors.note?.message}
                   id="outlined-basic"
                   label="Note"
                   variant="outlined"
@@ -300,16 +321,16 @@ export default function Form() {
                   <Typography>Email: {data.email} </Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Gender: {data.gender}</Typography>
+                  <Typography>Gender: {data.gender || "-"}</Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Hobby: {data.hobby.join(", ")}</Typography>
+                  <Typography>Hobby: {data.hobby.join(", ") || "-"}</Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Status: {data.status}</Typography>
+                  <Typography>Status: {data.status || "-"}</Typography>
                 </Grid>
                 <Grid container size={{ xs: 3, sm: 3, md: 3 }}>
-                  <Typography>Note: {data.note} </Typography>
+                  <Typography>Note: {data.note || "-"} </Typography>
                 </Grid>
               </Grid>
               <Grid container columns={{ xs: 6, sm: 6, md: 6 }}>
