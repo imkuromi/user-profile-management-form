@@ -40,7 +40,7 @@ export default function Form() {
       lastName: "",
       email: "",
       pdpa: false,
-      gender: "" as any,
+      gender: "Male",
       hobby: [],
       status: "" as any ,
       note: "",
